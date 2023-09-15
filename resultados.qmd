@@ -1,5 +1,48 @@
+
+# Resultados
+
 ## Principais assuntos
 
 O gráfico abaixo mostra os quantitativos dos principais assuntos.
 
-![assuntos](graficos/assuntos.png)
+![](graficos/assuntos.png){width=1000}
+
+## Polo passivo
+O gráfico abaixo mostra a distribuição das ações por operadora do polo passivo. A tabela com as operadoras cuja frequência de ações é de 67 acima segue logo abaixo.
+
+```{r}
+library(tidyverse)
+pa <- readRDS("tabelas/polo_passivo.rds")
+pa |>
+  count(parte1, sort = T) |>
+  filter(n > 500) |>
+  ggplot(aes(x = n, y = reorder(parte1,n))) +
+  geom_bar(stat = "identity",fill = "darkblue", show.legend = FALSE) +
+  geom_label(aes(label = n))+
+  scale_fill_viridis_d(option="A") +
+  labs(x = "Quantidade de ações",
+       y = "Operadora",
+       title = "Principais operadoras de plano de saúde no polo passivo no TJSP") +
+  theme_bw()
+
+```
+
+### Tabela 1: Principais operadoras de saúde acionadas no TJSP
+
+```{r}
+library(flextable)
+library(knitr)
+pa |>
+count(parte1, sort = T) |>
+setNames(c("parte", "freq"))|>
+flextable()
+```
+## Evolução das demandas no tempo
+
+O gráfico abaixo mostra a frequência mensal de demandas judiciais contra operadoras de planos de saúde ao longo dos anos. A linha tracejada representa a média móvel de seis meses.
+
+
+![](graficos/tb_mes.png)
+
+
+
