@@ -1,26 +1,5 @@
 [
   {
-    "objectID": "summary.html",
-    "href": "summary.html",
-    "title": "2  Summary",
-    "section": "",
-    "text": "In summary, this book has no content whatsoever."
-  },
-  {
-    "objectID": "intro.html",
-    "href": "intro.html",
-    "title": "1  Introdução",
-    "section": "",
-    "text": "Escrever introdução:w"
-  },
-  {
-    "objectID": "references.html",
-    "href": "references.html",
-    "title": "References",
-    "section": "",
-    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97."
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Impacto da Lei nº 14.454/2022 sobre a judicialização da saúde suplementar no TJSP",
@@ -28,18 +7,11 @@
     "text": "Prefácio\nEscrever prefácio"
   },
   {
-    "objectID": "sumario.html",
-    "href": "sumario.html",
-    "title": "2  Summary",
-    "section": "",
-    "text": "In summary, this book has no content whatsoever."
-  },
-  {
-    "objectID": "intro.html#pertunta",
-    "href": "intro.html#pertunta",
+    "objectID": "intro.html#pergunta",
+    "href": "intro.html#pergunta",
     "title": "1  Introdução",
-    "section": "1.1 Pertunta",
-    "text": "1.1 Pertunta\nA Lei nº 14.454/2022 teve impacto sobre o perfil e volume de judicialização contra a saúde suplementar?"
+    "section": "1.1 Pergunta",
+    "text": "1.1 Pergunta\nA Lei nº 14.454/2022 teve impacto sobre o perfil e volume de judicialização contra a saúde suplementar?"
   },
   {
     "objectID": "intro.html#hipóteses",
@@ -82,13 +54,6 @@
     "title": "1  Introdução",
     "section": "1.7 Possíveis limitações:",
     "text": "1.7 Possíveis limitações:\nErros na classificação dos processos por assunto - coletaremos algumas ações impertinentes e deixaremos de fora outras pertinentes Dado o curto tempo desde a publicação da lei, dificuldade de dimensionar como e se impactou tempo de julgamento, padrões de procedência, etc. Dificuldades de separar impactos na judicialização relacionados à pandemia daqueles relacionados à Lei - a coleta da menção à Lei permite apenas uma aproximação Dificuldade de levantar doenças/tratamentos pleiteados, mesmo com softwares de processamento, dada a falta de padronização neste tipo de demanda - seja em relação ao CID, à TISS, à RENESES… Decisão, por ora, de não coletar esses dados."
-  },
-  {
-    "objectID": "intro.html#pergunta",
-    "href": "intro.html#pergunta",
-    "title": "1  Introdução",
-    "section": "1.1 Pergunta",
-    "text": "1.1 Pergunta\nA Lei nº 14.454/2022 teve impacto sobre o perfil e volume de judicialização contra a saúde suplementar?"
   },
   {
     "objectID": "metodologia.html",

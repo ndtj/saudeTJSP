@@ -1,6 +1,6 @@
 project:
   type: book
-
+  output-dir: docs
 book:
   title: "Impacto da Lei nº 14.454/2022 sobre a judicialização da saúde suplementar no TJSP"
   author: "PUCSP e IDEC"
