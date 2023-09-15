@@ -1,0 +1,10 @@
+
+# Metodologia
+
+Para responder às perguntas da pesquisa, optou-se por coletar processos distribuídos em primeira instância no Tribunal de Justiça de São Paulo (TJSP) com os seguintes assuntos, conforme padronização das tabelas processuais unificadas do Conselho Nacional de Jutiça: Fornecimento de medicamentos, tratamento médico-hospitalar, fornecimento de insumos e unidade de terapia intensiva (UTI) ou unidade de cuidados intensivos (UCI).
+
+Quanto ao período, foram consideradas somente ações distribuídas a entre 01 de janeiro de 2019 e 09 de setembro de 2023.
+
+Uma vez que não existe busca de processos distribuídos por assunto, foi necessário gerar números de possíveis processos distribuídos durante o período de interesse da pesquisa e posteriormente excluir os assuntos e classes procesuais que não eram de interesse para a pesquisa. Além disso, foi foram excluídas as ações em que a Fazenda pública municipal ou estadual aparece no polo ativo ou no polo passivo.
+
+Após a aplicação dos filtros, restaram 51.954 processos. No entanto, só foi possível identificar 20.842 decisões liminares distintas de 19.938 processos nos quais constava uma decisão liminar.

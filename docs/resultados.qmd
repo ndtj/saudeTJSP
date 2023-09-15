@@ -1,0 +1,5 @@
+## Principais assuntos
+
+O gráfico abaixo mostra os quantitativos dos principais assuntos.
+
+![assuntos](graficos/assuntos.png)

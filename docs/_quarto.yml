@@ -1,0 +1,29 @@
+project:
+  type: book
+
+book:
+  title: "Impacto da Lei nº 14.454/2022 sobre a judicialização da saúde suplementar no TJSP"
+  author: "PUCSP e IDEC"
+  date: "15/09/2023"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - sumario.qmd
+    - metodologia.qmd
+    - resultados.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+execute:
+  message: false
+  echo: false
+  warning: false
+
+
+

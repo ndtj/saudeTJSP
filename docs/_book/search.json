@@ -1,0 +1,107 @@
+[
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "2  Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever."
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introdução",
+    "section": "",
+    "text": "Escrever introdução:w"
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Impacto da Lei nº 14.454/2022 sobre a judicialização da saúde suplementar no TJSP",
+    "section": "",
+    "text": "Prefácio\nEscrever prefácio"
+  },
+  {
+    "objectID": "sumario.html",
+    "href": "sumario.html",
+    "title": "2  Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever."
+  },
+  {
+    "objectID": "intro.html#pertunta",
+    "href": "intro.html#pertunta",
+    "title": "1  Introdução",
+    "section": "1.1 Pertunta",
+    "text": "1.1 Pertunta\nA Lei nº 14.454/2022 teve impacto sobre o perfil e volume de judicialização contra a saúde suplementar?"
+  },
+  {
+    "objectID": "intro.html#hipóteses",
+    "href": "intro.html#hipóteses",
+    "title": "1  Introdução",
+    "section": "1.2 Hipóteses",
+    "text": "1.2 Hipóteses\nA Lei do Rol não gerou aumento no volume de demandas judiciais contra a saúde suplementar, pois apenas sedimentou o entendimento jurisprudencial majoritário, consolidado ao longo de muitos anos. A Lei do Rol não gerou diminuição no volume de demandas administrativas ou judiciais contra a saúde suplementar, pois, na ausência de fiscalização e punição pela ANS, a Lei não terá impactado a prática de negativas indevidas do setor."
+  },
+  {
+    "objectID": "intro.html#fonte",
+    "href": "intro.html#fonte",
+    "title": "1  Introdução",
+    "section": "1.3 Fonte",
+    "text": "1.3 Fonte\nAções distribuídas na 1ª instância do TJSP (e-SAJ)"
+  },
+  {
+    "objectID": "intro.html#recorte",
+    "href": "intro.html#recorte",
+    "title": "1  Introdução",
+    "section": "1.4 Recorte:",
+    "text": "1.4 Recorte:\nApenas demandas sobre negativa de cobertura contra operadoras (filtrar por assunto e, para excluir demandas contra o SUS, por réu - excluir Fazenda Pública) Período de janeiro/2019 a junho/2023"
+  },
+  {
+    "objectID": "intro.html#dados-a-serem-coletados",
+    "href": "intro.html#dados-a-serem-coletados",
+    "title": "1  Introdução",
+    "section": "1.5 Dados a serem coletados:",
+    "text": "1.5 Dados a serem coletados:\nQuantidade de demandas distribuídas (por mês) Menção à Lei º 14.454/2022 nas petições iniciais - criar lista de termos para processamento com GPT Útil para distinguir o que foi motivado pela Lei, ou respaldado por ela, de outros tipos de demandas relacionadas a negativa de cobertura Data de decisão sobre pedido liminar (caso haja)"
+  },
+  {
+    "objectID": "intro.html#prazo-60-a-90-dias-até-novembro-de-2023",
+    "href": "intro.html#prazo-60-a-90-dias-até-novembro-de-2023",
+    "title": "1  Introdução",
+    "section": "1.6 Prazo: 60 a 90 dias (até novembro de 2023)",
+    "text": "1.6 Prazo: 60 a 90 dias (até novembro de 2023)"
+  },
+  {
+    "objectID": "intro.html#possíveis-limitações",
+    "href": "intro.html#possíveis-limitações",
+    "title": "1  Introdução",
+    "section": "1.7 Possíveis limitações:",
+    "text": "1.7 Possíveis limitações:\nErros na classificação dos processos por assunto - coletaremos algumas ações impertinentes e deixaremos de fora outras pertinentes Dado o curto tempo desde a publicação da lei, dificuldade de dimensionar como e se impactou tempo de julgamento, padrões de procedência, etc. Dificuldades de separar impactos na judicialização relacionados à pandemia daqueles relacionados à Lei - a coleta da menção à Lei permite apenas uma aproximação Dificuldade de levantar doenças/tratamentos pleiteados, mesmo com softwares de processamento, dada a falta de padronização neste tipo de demanda - seja em relação ao CID, à TISS, à RENESES… Decisão, por ora, de não coletar esses dados."
+  },
+  {
+    "objectID": "intro.html#pergunta",
+    "href": "intro.html#pergunta",
+    "title": "1  Introdução",
+    "section": "1.1 Pergunta",
+    "text": "1.1 Pergunta\nA Lei nº 14.454/2022 teve impacto sobre o perfil e volume de judicialização contra a saúde suplementar?"
+  },
+  {
+    "objectID": "metodologia.html",
+    "href": "metodologia.html",
+    "title": "3  Metodologia",
+    "section": "",
+    "text": "Para responder às perguntas da pesquisa, optou-se por coletar processos distribuídos em primeira instância no Tribunal de Justiça de São Paulo (TJSP) com os seguintes assuntos, conforme padronização das tabelas processuais unificadas do Conselho Nacional de Jutiça: Fornecimento de medicamentos, tratamento médico-hospitalar, fornecimento de insumos e unidade de terapia intensiva (UTI) ou unidade de cuidados intensivos (UCI).\nQuanto ao período, foram consideradas somente ações distribuídas a entre 01 de janeiro de 2019 e 09 de setembro de 2023.\nUma vez que não existe busca de processos distribuídos por assunto, foi necessário gerar números de possíveis processos distribuídos durante o período de interesse da pesquisa e posteriormente excluir os assuntos e classes procesuais que não eram de interesse para a pesquisa. Além disso, foi foram excluídas as ações em que a Fazenda pública municipal ou estadual aparece no polo ativo ou no polo passivo.\nApós a aplicação dos filtros, restaram 51.954 processos. No entanto, só foi possível identificar 20.842 decisões liminares distintas de 19.938 processos nos quais constava uma decisão liminar."
+  },
+  {
+    "objectID": "resultados.html",
+    "href": "resultados.html",
+    "title": "4  Principais assuntos",
+    "section": "",
+    "text": "O gráfico abaixo mostra os quantitativos dos principais assuntos.\n\n\n\nassuntos"
+  }
+]
