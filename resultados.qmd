@@ -61,6 +61,14 @@ flextable()
 
 O gráfico abaixo mostra a frequência mensal de demandas judiciais contra operadoras de planos de saúde ao longo dos anos. A linha tracejada representa a média móvel de seis meses.
 
+Os dois eventos de interesse com potencial impacto são o julgamento do STJ e a vigência da lei 14.454. O julgamento do STJ restringe o acesso a tratamentos, sendo uma potencial causa de redução no volume de ações. A vigência da lei 14.454 amplia o acesso subtratamento, sendo uma potencial causa de aumento no volume de ações. 
+
+A restrição na quantidade de tratamentos por decisão de uma corte superior aumenta as chances de improcedência das ações. Já a ampliação na quantidade de tratamentos por força de uma nova lei incrementa as chances de procedência das ações.
+
+Com a notícia do início do julgamento, é esperado que os potenciais autores de medidas judiciais aguardem a sua conclusão para decidir se irão ou não recorrer ao Poder Judiciário. A propositura antecipada pode expor os autores a custos desnecessários. Por essa razão, a queda no volume de ações tende a ser antecipada e pode ser observada antes mesmo da proclamação do resultado do julgamento.
+
+Já a discussão do projeto de lei não garante a aprovação, de forma que os potenciais autores de medidas judiciais aguardarão a sua conclusão para decidir se irão ou não recorrer ao Poder Judiciário. Uma vez promulgalda a lei, os autores e seus advogados precisarão estudar os casos, reunir documentos e preparar a inicial antes de distribuir a ação. Com isso, o aumento no volume de ações tende a ser postergado e pode ser observada de 30 a 60 dias após a vigência.
+
 
 ![](graficos/tb_mes.png)
 
