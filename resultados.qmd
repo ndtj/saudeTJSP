@@ -8,7 +8,8 @@ O gráfico abaixo mostra os quantitativos dos principais assuntos.
 ![](graficos/assuntos.png){width=1000}
 
 ## Polo passivo
-O gráfico abaixo mostra a distribuição das ações por operadora do polo passivo. A tabela com as operadoras cuja frequência de ações é de 67 acima segue logo abaixo.
+O gráfico abaixo mostra as principais operadoras presentes no polo passivo. Houve junção de alguns nomes. Por exemplo, todas as unimeds foram classicadas como “Unimed”. O mesmo ocorreu com o Bradesco, Itaú e outras.
+Por vezes, houve variações nos nomes. O número do CNPJ também foi utilizado para unificar as categorias. As operadoras com menos de 65 ações contra elas foram mantidas na categoria outros. Havia um número grande de operadoras com o número de ações judiciais entre 50 e 65 e sua inclusão inviabilizaria a visualização apropriada.
 
 ```{r}
 library(tidyverse)
@@ -37,6 +38,25 @@ count(parte1, sort = T) |>
 setNames(c("parte", "freq"))|>
 flextable()
 ```
+
+### Tabela 2: Taxa de demendas por 1000 beneficiários
+
+```{r}
+op_be <- readRDS("tabelas/operadoras_beneficiarios.rds")
+
+op_be |>
+arrange(desc(demandas_por_mil)) |>
+setNames(c("Operadora", "Demandas", "Beneficiarios", "Demandas por mil beneficiários")) |>
+flextable()
+
+```
+
+### Gráfico : Taxa de demenda por 10 mil beneficiários
+
+
+![](graficos/op_be.png)
+
+
 ## Evolução das demandas no tempo
 
 O gráfico abaixo mostra a frequência mensal de demandas judiciais contra operadoras de planos de saúde ao longo dos anos. A linha tracejada representa a média móvel de seis meses.
@@ -45,4 +65,27 @@ O gráfico abaixo mostra a frequência mensal de demandas judiciais contra opera
 ![](graficos/tb_mes.png)
 
 
+## Pedidos de tratamento conforme a doença
 
+Para identificar as doenças objetos dos pedidos de tratamento, foi necessário baixar as petições iniciais, nos procedimentos comuns ordinários e os ajuizamentos, nos procedimentos dos juizados especiais cíveis. Foi possívei indentificar as doenças conforme o CID em 19.474 processos. Vale dizer que, alguns pedidos incluem mais de uma doença.
+
+### Doenças
+![](graficos/doencas.png)
+
+### Grupos de doenças
+
+![](graficos/grupos_doencas.png)
+
+
+## Pedidos de liminares
+
+![](graficos/liminares.png)
+
+
+## Análise de duração do processo
+
+A análise de duração do processo considerou apenas as decisões em que constava, na movimentação, a descrição de decisão liminar ou de antecipação de tutela. Muitos pedidos, especialmente aqueles realizados nos juizados especiais cíveis, não incluem o pedido de liminar.
+A duração do processo foi condicionada ao teor da decisão e ao assunto. É possível notar que pedidos não concedidos demoram mais para serem apreciados. Isso ocorre porque, provavelmente, a não concessão leva a uma dilação probatória e os pedidos que levam à concessão estão melhor instruídos.
+O gráfico abaixo mostra o tempo entre a judicialização e a apreciação liminar condicionado à decisão
+
+![](graficos/km_decisao.png)

@@ -1,30 +1,25 @@
 # Introdução
 
-## Pergunta
-A Lei nº 14.454/2022 teve impacto sobre o perfil e volume de judicialização contra a saúde suplementar?
-
-## Hipóteses
-A Lei do Rol não gerou aumento no volume de demandas judiciais contra a saúde suplementar, pois apenas sedimentou o entendimento jurisprudencial majoritário, consolidado ao longo de muitos anos.
-A Lei do Rol não gerou diminuição no volume de demandas administrativas ou judiciais contra a saúde suplementar, pois, na ausência de fiscalização e punição pela ANS, a Lei não terá impactado a prática de negativas indevidas do setor.
-
-## Fonte
-Ações distribuídas na 1ª instância do TJSP (e-SAJ)
-
-## Recorte:
-Apenas demandas sobre negativa de cobertura contra operadoras (filtrar por assunto e, para excluir demandas contra o SUS, por réu - excluir Fazenda Pública)
-Período de janeiro/2019 a junho/2023
-
-## Dados a serem coletados:
-Quantidade de demandas distribuídas (por mês)
-Menção à Lei º 14.454/2022 nas petições iniciais - criar lista de termos para processamento com GPT
-Útil para distinguir o que foi motivado pela Lei, ou respaldado por ela, de outros tipos de demandas relacionadas a negativa de cobertura
-Data de decisão sobre pedido liminar (caso haja)
-
-## Prazo: 60 a 90 dias (até novembro de 2023)
-
-
-## Possíveis limitações:
-Erros na classificação dos processos por assunto - coletaremos algumas ações impertinentes e deixaremos de fora outras pertinentes
-Dado o curto tempo desde a publicação da lei, dificuldade de dimensionar como e se impactou tempo de julgamento, padrões de procedência, etc.
-Dificuldades de separar impactos na judicialização relacionados à pandemia daqueles relacionados à Lei - a coleta da menção à Lei permite apenas uma aproximação
-Dificuldade de levantar doenças/tratamentos pleiteados, mesmo com softwares de processamento, dada a falta de padronização neste tipo de demanda - seja em relação ao CID, à TISS, à RENESES… Decisão, por ora, de não coletar esses dados.
+A presente pesquisa é um trabalho conjunto realizado pelo Instituto Brasileiro de Defesa do Consumidor - IDEC e pelo Núcleo de Direito, Tecnologia e Jurimetria da PUC-SP - NDTJ. O Idec é uma associação de consumidores sem fins lucrativos, independente de empresas, partidos ou governos, voltada para a defesa dos interesses dos direitos e interesses dos consumidores brasileiros. O NDTJ é um núcleo de estudos formado por professores, alunos e pesquisadores da PUC-SP, que tem como objetivo aplicar métodos empíricos quantitativos na compreensão do direito.
+As duas entidades uniram sua experiência e especialidade para desenvolver a presente pesquisa, com o objetivo de trazer elementos objetivos para o debate relativo à judicialização da saúde, em especial sobre os impactos da lei 14.454, de 21 de setembro de 2022. A lei 14.454 “dispõe sobre os planos privados de assistência à saúde, para estabelecer critérios que permitam a cobertura de exames ou tratamentos de saúde que não estão incluídos no rol de procedimentos e eventos em saúde suplementar.”
+O ano de 2022 trouxe dois importantes eventos relacionados à extensão da cobertura dos planos de saúde de acordo com o rol de procedimentos e eventos em saúde suplementar da ANS (Agência Nacional de Saúde Suplementar). O primeiro evento diz respeito ao entendimento firmado pela 2ª Seção do STJ no julgamento dos recursos especiais nº 1.886.929 e 1.889.704, no seguinte sentido:
+- Tese 1. O rol da ANS é taxativo.
+- Tese 2.  A operadora de saúde não está obrigada a arcar com procedimento não incluído no rol da ANS se existe, para a cura do paciente, outro procedimento eficaz e seguro já incorporado ao rol.
+- Tese 3. A contratação de cobertura ampliada ou a negociação de aditivo contratual para a cobertura de procedimento não incluído no rol da ANS é lícita e possível.
+O Congresso Nacional reagiu ao entendimento do STJ com a publicação da Lei nº 14.454, que estabeleceu novos marcos legais para o tema, tornando o rol da ANS não taxativo. A lei basicamente determina que, em caso de procedimento prescrito não incluído no rol, a cobertura deve ser autorizada pela operadora de plano de saúde, desde que:
+- Marco 1. Exista comprovação da eficácia baseada em evidências científicas.
+- Marco 2. Exista recomendação pela Comissão Nacional de Incorporação de Tecnologias no Sistema Único de Saúde (Conitec).
+- Marco 3. Existe, alternativamente ao Marco 2, recomendação de, no mínimo, um órgão de avaliação de tecnologias em saúde com renome internacional.
+Parte das discussões gira em torno dos impactos que as diferentes soluções terão no volume de pedidos judiciais de acesso a procedimentos médicos apresentados contra planos de saúde, bem como na consequente inviabilização financeira do sistema como um todo. A preocupação relaciona-se ao possível aumento na quantidade de pedidos judiciais em decorrência da flexibilização do rol, nos termos em que estabelecido pela lei 14.454.
+No intuito de contribuir para esse debate, foram elaborada as seguintes  questões, que este estudo pretende responder:
+Quais são os réus mais frequentes?
+Quais são os medicamentos e tratamentos mais recorrentes?
+Volume de ações aumentou depois de set 2022?
+Em caso positivo, esse aumento está associado à lei 14.454?
+Na pesquisa optou-se por coletar processos distribuídos em primeira instância no Tribunal de Justiça de São Paulo (TJSP) com os seguintes assuntos, conforme padronização das tabelas processuais unificadas do Conselho Nacional de Jutiça:
+Fornecimento de medicamentos.
+Tratamento médico-hospitalar.
+Fornecimento de insumos e unidade de terapia intensiva (UTI) ou unidade de cuidados intensivos (UCI).
+Quanto ao período, foram consideradas somente ações distribuídas entre 01 de janeiro de 2019 e 09 de setembro de 2023. O período engloba 3 anos e 9 meses antes e um ano após a promulgação da lei 14.454.
+Uma vez que não existe busca de processos distribuídos por assunto, foi necessário gerar números de possíveis processos distribuídos durante o período de interesse da pesquisa e posteriormente excluir os assuntos e classes procesuais que não eram de interesse para a pesquisa. Além disso, foram excluídas as ações em que a Fazenda pública municipal ou estadual aparece no polo ativo ou no polo passivo.
+Após a aplicação dos filtros, restaram 51.954 processos. No entanto, só foi possível identificar 20.842 decisões liminares distintas de 19.938 processos nos quais constava uma decisão liminar.
