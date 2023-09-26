@@ -118,7 +118,7 @@ as perante o Poder Judiciário está associada a essa questão é a inclusão de
 
 ## Pedidos de liminares
 
-![](graficos/liminares.png)
+![](graficos/liminar.png)
 
 
 ## Análise de duração do processo
