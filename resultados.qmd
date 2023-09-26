@@ -56,7 +56,11 @@ flextable()
 
 ![](graficos/op_be.png)
 
+A tabela que elenca as operadoras de saúde por quantidade de demandas em números absolutos deve ser analisada com cautela. A quantidade de demandas está associada à quantidade de beneficiários, de forma que operadoras de grande porte aparecerão nas primeiras posições independentemente da qualidade do serviço prestado. Por tal razão, não surpreende a constatação de que Unimed, Sulamerica, Amil e Bradesco ocupem as quatro primeiras posições.
 
+Daí a necessidade de se ponderar a quantidade de demandas pela quantidade de benefíciarios, realizando o cálculo de uma taxa de demandas por 10 mil beneficiários. Na tabela com a taxa percebe-se que diversas operadoras que se encontravam nas primeiras posições caem para níveis inferiores e novas operadoras surgem na liderança pela quantidade de demandas ponderada pelo número de vidas seguradas. 
+
+A Cassi - Caixa de Assistência dos Funcionários do Banco do Brasil, aparece destacada em primeiro lugar, com quase 2 demandas para cada 10 vidas. As Caixas Beneficentes aparecem em segundo lugar com 4,84 demandas por 10 mil beneficiários, seguida por Allianz, com 2.83, e Trasmintano, com 2.55. Há depois um grupo grande de operadoras com taxas entre 1 e 2 demandas por 10 mil beneficiários. E, por fim, um seleto grupo de seis operadoras com menos de uma demanda. Hapvida aparece com a taxa mais baixa: 0,063.
 ## Evolução das demandas no tempo
 
 O gráfico abaixo mostra a frequência mensal de demandas judiciais contra operadoras de planos de saúde ao longo dos anos. A linha tracejada representa a média móvel de seis meses.
@@ -99,6 +103,18 @@ Para identificar as doenças objetos dos pedidos de tratamento, foi necessário 
 
 ![](graficos/grupos_doencas.png)
 
+Utilizando ferramentas de leitura automatizadas, a pesquisa conseguiu extrair o codigo internacional de doenças - CID de XXX petições iniciais. O propósito foi entender império das demandas levadas ao Poder Judiciário e verificar se há concentração em determinadas doenças ou grupos de doenças.
+
+Os transtornos globais do desenvolvimento (nome técnico que abarca autismo) aparece em primeiro lugar com larga vantagem, respondendo por YYY% dos pedidos analisados. Em segundo lugar aparece transtornos relacionados ao uso de drogas (XX%), em terceiro obesidade (XX%) e em quarto transtornos ligados ao alcoolismo (XX%).
+
+Quando analisadas por grupos, a concentração de mostra ainda mais acentuada. Os transtornos mentais e comportamentais respondem por XX% das demandas. O segundo lugar, neoplasias (tumores), aparece com XX%; e o terceiro, doenças endócrinas e metabólicas, com XX%.
+
+A lista é interessante por duas principais razões. 
+
+A lista mostra como a população em geral está sendo afetada de diversas formas por transtornos psicossociais relacionados ao uso de drogas, álcool e outros distúrbios comportamentais, que podem ter sido agravados pela pandemia. Associamos doenças a bactérias e viruses invasivos, porém os principais distúrbios da modernidade são psicossociais.
+
+A lista indica também o acerto da inclusão pela ANS, através da Resolução Normativa nº 539, de 23 de junho de 2022 da “cobertura obrigatória de sessões para o tratamento de portadores de transtorno do espectro autista”. Parte substancial da endemia de demand
+as perante o Poder Judiciário está associada a essa questão é a inclusão desses transtornos no rol permite uma cobertura mais eficaz e abrangente do sistema de seguridade da saúde.
 
 ## Pedidos de liminares
 
