@@ -1,3 +1,43 @@
-# Prefácio {.unnumbered}
+# Apresentação {.unnumbered .unlisted}
 
-Escrever prefácio
+::: {.content-visible when-format="html"}
+
+### Organizaçãoes {.unnumbered .unlisted}
+Pontifícia Universidade Católica de São Paulo (PUC-SP)
+Instituto de Defesa do Consumidor (IDEC)
+
+### Coordenação {.unnumbered .unlisted}
+
+:::: {.columns}
+
+#### PUC-SP
+::: {.column width="30%"}
+  - Marcelo Neves
+  - José de Jesus Filho
+:::
+
+#### IDEC
+::: {.column width="30%"}
+  - Ana Navarrete
+  - Wylliam ...
+:::
+
+::::
+
+## Citação
+
+Para citar esse relatório, use seguinte referência:
+
+```
+PUC-SP., IDEC. (Eds.). (2023).
+"{{< meta book.title >}}". ndtj.github.io/saudeTJSP
+
+@book{puc2023
+    title = {{< meta book.title >}}
+    editor = {PUC-SP, IDEC},
+    url = {ndtj.github.io/saudeTJSP},
+    year = {2023},
+    publisher = {PUC-SP}
+}
+```
+:::

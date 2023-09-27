@@ -1,10 +1,10 @@
 project:
   type: book
   output-dir: docs
+  preview:
+    port: 4200
 book:
-  title: "Impacto da Lei nº 14.454/2022 sobre a judicialização da saúde suplementar no TJSP"
-  author: "PUCSP e IDEC"
-  date: "15/09/2023"
+  title: "A judicialização da saúde suplementar no TJSP"
   chapters:
     - index.qmd
     - intro.qmd
@@ -12,18 +12,37 @@ book:
     - metodologia.qmd
     - resultados.qmd
     - references.qmd
+  downloads: [pdf]
+  output-file: "saude_suplementar"
 
+crossref: 
+  fig-prefix: Gráfico     # (default is "Figure")
+  tbl-prefix: Tabela    # (default is "Table")
+  title-delim: —     # (default is ":")
 bibliography: references.bib
+csl: abnt.csl
+nocite: |
+  @hyndman2018forecasting, @stringr, @RPostgres, @dplyr, @pander, @ggplot2, @httr, @xml2, 
 
 format:
   html:
     theme: cosmo
   pdf:
     documentclass: scrreprt
+    latex: xelatex
+    include-in-header:
+      text: |
+        \usepackage{makeidx}
+        \makeindex
+    include-after-body:
+      text: |
+        \printindex
+    output-file: "saude_suplementar"
+    output-ext:  "pdf"
+
+latex-auto-install: true
+
 execute:
   message: false
   echo: false
   warning: false
-
-
-

@@ -1,80 +1,99 @@
-
 # Resultados
-
-## Principais assuntos
-
-O gráfico abaixo mostra os quantitativos dos principais assuntos.
-
-![](graficos/assuntos.png){width=1000}
-
-## Polo passivo
-O gráfico abaixo mostra as principais operadoras presentes no polo passivo. Houve junção de alguns nomes. Por exemplo, todas as unimeds foram classicadas como “Unimed”. O mesmo ocorreu com o Bradesco, Itaú e outras.
-Por vezes, houve variações nos nomes. O número do CNPJ também foi utilizado para unificar as categorias. As operadoras com menos de 65 ações contra elas foram mantidas na categoria outros. Havia um número grande de operadoras com o número de ações judiciais entre 50 e 65 e sua inclusão inviabilizaria a visualização apropriada.
 
 ```{r}
 library(tidyverse)
-pa <- readRDS("tabelas/polo_passivo.rds")
-pa |>
-  count(parte1, sort = T) |>
-  filter(n > 500) |>
-  ggplot(aes(x = n, y = reorder(parte1,n))) +
-  geom_bar(stat = "identity",fill = "darkblue", show.legend = FALSE) +
-  geom_label(aes(label = n))+
-  scale_fill_viridis_d(option="A") +
-  labs(x = "Quantidade de ações",
-       y = "Operadora",
-       title = "Principais operadoras de plano de saúde no polo passivo no TJSP") +
-  theme_bw()
-
-```
-
-### Tabela 1: Principais operadoras de saúde acionadas no TJSP
-
-```{r}
 library(flextable)
 library(knitr)
-pa |>
-count(parte1, sort = T) |>
-setNames(c("parte", "freq"))|>
-flextable()
+
 ```
 
-### Tabela 2: Taxa de demandas por 1000 beneficiários
+## Principais assuntos
+
+O @fig-assuntos abaixo mostra os quantitativos dos principais assuntos.
+
+![Distribuição das demandas em saúde suplementar conforme o assunto assunto](graficos/assuntos.png){width=1000 #fig-assuntos}
+
+As ações, @fig-assuntos, envolvendo tratamento médico-hospitalar aparecem em muito maior quantidade do que o fornecimento de medicamentos. De um total de 51.954 ações, 42.436 (81,67%) são pedidos de tratamento e 8.751 (16,84%) são pedidos para fornecimento de medicamentos.
+
+## Polo passivo
+O @fig-polo_passivo abaixo mostra as principais operadoras presentes no polo passivo. Houve junção de alguns nomes. Por exemplo, todas as unimeds foram classicadas como “Unimed”. O mesmo ocorreu com o Bradesco, Itaú e outras.
+Por vezes, houve variações nos nomes. O número do CNPJ também foi utilizado para unificar as categorias. As operadoras com menos de 65 ações contra elas foram mantidas na categoria outros. Havia um número grande de operadoras com o número de ações judiciais entre 50 e 65 e sua inclusão inviabilizaria a visualização apropriada.
+
+![Distribuição das demandas em saúde suplementar conforme o polo passivo](graficos/polo_passivo.png){width=1000 #fig-polo_passivo}
+
+### Principais operadoras de saúde acionadas no TJSP
+
+A @tbl-operadoras e o @fig-demandas_por_mil, que elenca as operadoras de saúde por quantidade de demandas em números absolutos, deve ser analisada com cautela. A quantidade de demandas está associada à quantidade de beneficiários, de forma que operadoras de grande porte aparecerão nas primeiras posições independentemente da qualidade do serviço prestado. Por tal razão, não surpreende a constatação de que Unimed, Sulamerica, Amil e Bradesco ocupem as quatro primeiras posições.
+Daí a necessidade de se ponderar a quantidade de demandas pela quantidade de beneficiários, realizando o cálculo de uma taxa de demandas por  mil beneficiários.
 
 ```{r}
+#| label: tbl-operadoras
+#| tbl-cap: "Principais operadoras de saúde acionadas no TJSP"
+set_flextable_defaults(
+  font.family = "Arial",
+  font.size = 12,
+  font.color = "black",
+  padding = 5,
+  table.layout = "autofit",
+  digits = 2,
+  big.mark = ".",
+  decimal.mark = ",",
+  theme_fun = "theme_vanilla"
+  )
+fftp <- function(ft, pgwidth = 6){
+
+  ft_out <- ft %>%
+     autofit()
+
+  ft_out <- width(ft_out, width = dim(ft_out)$widths*pgwidth /(flextable_dim(ft_out)$widths))
+  return(ft_out)
+}
+readRDS("tabelas/polo_passivo.rds") |>
+dplyr::count(parte1, sort = T) |>
+setNames(c("Polo passivo", "Quantidade"))|>
+flextable() |>
+fftp()
+```
+
+### Demandas por beneficiários - tabela
+
+```{r}
+#| label: tbl-demandas_por_mil
+#| tbl-cap: "Taxa de Demandas por mil beneficiários"
 op_be <- readRDS("tabelas/operadoras_beneficiarios.rds")
 
 op_be |>
 arrange(desc(demandas_por_mil)) |>
-setNames(c("Operadora", "Demandas", "Beneficiarios", "Demandas por mil beneficiários")) |>
-flextable()
+setNames(c("Operadora", "Demandas", "Beneficiarios", "Demandas por mil beneficiários","Percentual demandas","Percentual beneficiários")) |>
+flextable() |>
+fftp()
 
 ```
 
-### Gráfico : Taxa de demanda por 10 mil beneficiários
+### Demandas por beneficiários - gráfico
 
 
-![](graficos/op_be.png)
+![Taxa de judicialização por mil beneficiårios](graficos/op_be.png){#fig-demandas_por_mil}
 
-A tabela que elenca as operadoras de saúde por quantidade de demandas em números absolutos deve ser analisada com cautela. A quantidade de demandas está associada à quantidade de beneficiários, de forma que operadoras de grande porte aparecerão nas primeiras posições independentemente da qualidade do serviço prestado. Por tal razão, não surpreende a constatação de que Unimed, Sulamerica, Amil e Bradesco ocupem as quatro primeiras posições.
+A @tbl-demandas_por_mil e o @fig-demandas_por_mil apresentam a taxa de demandas por beneficiários. Diversas operadoras que se encontravam nas primeiras posições na contagem em números absolutos desceram para níveis inferiores, uma vez que o divisor maior contribui para uma taxa menor. 
+Ao mesmo tempo, novas operadoras surgem na liderança quando observada a quantidade de demandas, ponderada pelo número de vidas seguradas.
 
-Daí a necessidade de se ponderar a quantidade de demandas pela quantidade de benefíciarios, realizando o cálculo de uma taxa de demandas por 10 mil beneficiários. Na tabela com a taxa percebe-se que diversas operadoras que se encontravam nas primeiras posições caem para níveis inferiores e novas operadoras surgem na liderança pela quantidade de demandas ponderada pelo número de vidas seguradas. 
+As Caixas Beneficentes aparecem em primeiro lugar com 5,614  demandas por 10 mil beneficiários, e a Geap aparece em segundo lugar, com 5,410. As três operadoras seguintes são Sulamerica, com 3,972, Bradesco, com 3,381, Allianz e Unisaude, com 3,862, e Amil, com 3,70. 
 
-A Cassi - Caixa de Assistência dos Funcionários do Banco do Brasil, aparece destacada em primeiro lugar, com quase 2 demandas para cada 10 vidas. As Caixas Beneficentes aparecem em segundo lugar com 4,84 demandas por 10 mil beneficiários, seguida por Allianz, com 2.83, e Trasmintano, com 2.55. Há depois um grupo grande de operadoras com taxas entre 1 e 2 demandas por 10 mil beneficiários. E, por fim, um seleto grupo de seis operadoras com menos de uma demanda. Hapvida aparece com a taxa mais baixa: 0,063.
+Um grupo grande com operadoras intermediárias aparecem com taxas entre uma e três demandas por 10 mil beneficiários. E, por fim, um seleto grupo de duas operadoras aparece com menos de uma demanda por 10 mil beneficiários: Samaritano, com 0,727 e Hapvida, com a taxa mais baixa de 0,398.
+
 ## Evolução das demandas no tempo
 
-O gráfico abaixo mostra a frequência mensal de demandas judiciais contra operadoras de planos de saúde ao longo dos anos. A linha tracejada representa a média móvel de seis meses.
+O sistema de saúde sofreu entre 2019 e 2023 sucessivas intervenções de diversas naturezas, todas com potencial de elevado impacto nos litígios. Essa sucessão de intervenções em um período tão curto confunde causas e, por conseguinte, dificulta inferências sobre as possíveis causas das variações observadas na quantidade de casos no período analisado. Por essa razão, restringimos nossos comentários a aspectos meramente descritivos, preferindo aguardar onteanscurso de mais tempo para realizar novas análises.
 
-Os dois eventos de interesse com potencial impacto são o julgamento do STJ e a vigência da lei 14.454. O julgamento do STJ restringe o acesso a tratamentos, sendo uma potencial causa de redução no volume de ações. A vigência da lei 14.454 amplia o acesso subtratamento, sendo uma potencial causa de aumento no volume de ações. 
+Os três eventos de interesse com potencial impacto sobre a quantidade de demandas são o julgamento de dois recursos especiais do STJ sobre a taxatividade do rol da ANS, a resolução normativa n. 539/2022 da ANS e o início da vigência da lei federal n. 14.454. Ao declarar a taxatividade do rol da ANS, o julgamento do STJ restringiu o acesso a tratamentos e atua como uma potencial causa de redução no volume de ações.
 
-A restrição na quantidade de tratamentos por decisão de uma corte superior aumenta as chances de improcedência das ações. Já a ampliação na quantidade de tratamentos por força de uma nova lei incrementa as chances de procedência das ações.
+A resolução normativa da ANS incluiu no rol tratamentos de distúrbios relacionados a autismo, sendo uma potencial causa de redução no volume de demandas, ao sinalizar de forma clara para as operadoras sua responsabilidade portais tratamentos. E a vigência da lei federal n. 14.454 é uma potencial causa de aumento no volume de ações ao declarar o rol da ANS como exemplificativo.
 
-Com a notícia do início do julgamento, é esperado que os potenciais autores de medidas judiciais aguardem a sua conclusão para decidir se irão ou não recorrer ao Poder Judiciário. A propositura antecipada pode expor os autores a custos desnecessários. Por essa razão, a queda no volume de ações tende a ser antecipada e pode ser observada antes mesmo da proclamação do resultado do julgamento.
-
-Já a discussão do projeto de lei não garante a aprovação, de forma que os potenciais autores de medidas judiciais aguardarão a sua conclusão para decidir se irão ou não recorrer ao Poder Judiciário. Uma vez promulgalda a lei, os autores e seus advogados precisarão estudar os casos, reunir documentos e preparar a inicial antes de distribuir a ação. Com isso, o aumento no volume de ações tende a ser postergado e pode ser observada de 30 a 60 dias após a vigência.
+O @fig-fisicas_operadoras abaixo mostra a evolução da quantidade de demandas no tempo, separando os pedidos de tratamento dos pedidos de fornecimento de medicamentos.
 
 
-![](graficos/tb_mes.png)
+![Demandas judiciais de pessoas físicas contra operadoras de saúde](graficos/tb_mes.png){#fig-fisicas_operadoras}
 
 O sistema de saúde sofreu entre 2019 e 2023 sucessivas intervenções de diversas naturezas, todas com potencial de elevado impacto nos litígios. A primeira intervenção foi de natureza sanitária, a pandemia. A segunda intervenção foi de natureza judiciária, a decisão do STJ. A terceira intervenção foi de natureza legislativa, a promulgação da lei XXX.
 
@@ -82,49 +101,49 @@ Essa sucessão de intervenções em um período tão curto dificulta inferência
 
 A maior variação na quantidade de ações é observada nos casos envolvendo tratamentos. A quantidade de pedidos relacionados a medicamentos apresenta maior estabilidade. Isso se deve a [….].
 
-As ações relacionadas a pedidos de medicamento são inferiores em relação aos de tratamento e oscilam em torno de 125 por mês. Em janeiro de 2019 houve XX pedidos. Essa quantidade aumenta até atingir o ápice de ZZ pedidos em dezembro de 2020. Ao longo de 2022 parece ocorrer uma queda, chegando a XX em dezembro daquele ano. Já em 2023 as quantidades voltam a subir chegando a XXX em maio.
+As ações relacionadas a pedidos de medicamento são inferiores em relação aos de tratamento e oscilam em torno de 125 por mês. Em janeiro de 2019 houve 44 pedidos. Essa quantidade aumenta até atingir o ápice de 194 pedidos em dezembro de 2020. Ao longo de 2022 parece ocorrer uma queda, chegando a 89 em dezembro daquele ano. Já em 2023 as quantidades voltam a subir chegando a 117 em maio.
 
-As ações relacionadas a pedidos de tratamento apresentam um comportamento distinto. Em janeiro de 2019 foram XXX ações. Esse número aumenta até chegar a XXX em março de 2021. A quantidade mais elevado foi de XXX ações distribuídas em fevereiro de 2022, seguida de uma queda até XXX em janeiro de 2023, quando a quantidade volta a crescer até XX em maio de 2023.
 
-A variação nas quantidades observadas podem estar associadas às intervenções mencionadas acima. O início da pandemia em março de 2020 parece associado a uma estabilização na quantidade de pedidos. Essa estabilidade parece se romper em março de 2022, quando a quantidade de pedidos começa a cair. A queda pode estar associada à proclamação parcial de julgamento pela taxatividade do rol da ANS pelo STJ, o que desincebtivaria a propositura de ações fora do rol.
+A quantidade de ações relacionadas a pedidos de medicamento são inferiores em relação aos de tratamento e oscilam em torno de 125 por mês. Em janeiro de 2019 houve 44 ações de acesso a medicamento. Essa quantidade aumenta até atingir o ápice de 194 pedidos em dezembro de 2020. Ao longo de 2022, parece ocorrer uma queda, chegando a 89 em dezembro daquele ano. Já em 2023 as quantidades voltam a subir chegando a 117 em maio.
 
-Por outro lado, tanto os pedidos de tratamento como de medicamentos aumentam a partir de janeiro de 2023. A lei 14.454 que torna o rol exemplificativo foi promulgada em setembro de 2021. No entanto, é esperado um intervalo entre 60 e 90 dias até que a lei surta efeitos na quantidade de ações, considerando o tempo necessário para que os pacientes procurem seus advogados e estes consigam organizar os documentos e preparar a ação para distribuição. 
+As ações relacionadas a pedidos de tratamento apresentam um comportamento distinto. Em janeiro de 2019 foram XXX ações. Esse número aumenta até chegar a 867  em março de 2021. A quantidade mais elevado foi de 971 ações distribuídas em fevereiro de 2022, seguida de uma queda até 298 em janeiro de 2023, quando a quantidade volta a crescer até 585 em maio de 2023.
 
-Então, existe a possibilidade de o aumento na quantidade de ações observado ao longo de 2023 estar associado à nova lei. No entanto,  duas ressalvas devem ser feitas. Primeiro, as quantidades observadas em 2023 (após a lei) ainda são muito inferiores àquelas observadas até 2021. Segundo, o pouco tempo transcorrido entre a promulgação da lei e a realização desta análise não permite chegar a uma conclusão robusta sobre a questão.
+A relação de causalidade entre normas e precedentes, de um lado, e variações na quantidade de ações, de outro, não é determinística e adora comportamentos não usuais.  Por exemplo, com a notícia do início do julgamento pelo STJ, os potenciais autores de medidas judiciais, receosos de uma restrição aos seus direitos, podem ter suspendido a propositura de ações para aguardar a decisão. Por essa razão, a queda no volume de ações poderia em tese ser observada antes mesmo da proclamação do resultado do julgamento.
+
+O início da pandemia em março de 2020 parece estar associado a um aumento, seguido de uma estabilização na quantidade de ações. Essa estabilidade se rompe em março de 2022, quando a quantidade de ações começa a cair. A queda pode estar associada à antecipação de julgamento pela taxatividade do rol da ANS pelo STJ, o que desincentiva a propositura de ações fora do rol, mas pode também decorrer dessa suspensão antecipada na distribuição de ações por conta da expectativa de um julgamento pelo STJ.
+
+Por outro lado, tanto a quantidade de ações envolvendo pedidos de tratamento como as de medicamentos aumentam a partir de janeiro de 2023. Tal aumento pode em tese ser explicado pela lei federal n. 14.454, que torna o rol exemplificativo e incentiva a propositura de ações, promulgada em setembro de 2021. O intervalo de 90 dias entre o início da vigência da e o aumento na quantidade de ações seria o tempo necessário para que os pacientes procurem seus advogados e estes consigam organizar os documentos e preparar a ação para distribuição.
+
+Existe a possibilidade de o aumento na quantidade de ações observado no início de 2023 estar associado à nova lei, em especial porque janeiro é um mês de recesso no qual, normalmente, observamos uma queda sazonal na quantidade de distribuições. No entanto, por conta do curto período de tempo transcorrido até agora é recomendável cautela em qualquer conclusão, com a realização de futuras novas análises.
+
 
 ## Pedidos de tratamento conforme a doença
 
+Uma das formas de identificação das causas em uma variação na quantidade de ações é a verificação das doenças que estão sendo discutidas. Por exemplo, se é verificado que a queda está relacionada a tratamento de autismo apenas, as suas causas devem ser restritas a esse tipo de doença. A análise de evolução no tempo será focada apenas nas ações envolvendo tratamento, que apresentam maior variabilidade.
+
+Para identificar as doenças objeto dos pedidos de tratamento, foi necessário baixar as petições iniciais nos procedimentos comuns ordinários, bem como os ajuizamentos nos procedimentos dos juizados especiais cíveis.
 Para identificar as doenças objetos dos pedidos de tratamento, foi necessário baixar as petições iniciais, nos procedimentos comuns ordinários e os ajuizamentos, nos procedimentos dos juizados especiais cíveis. Foi possívei indentificar as doenças conforme o CID em 19.474 processos. Vale dizer que, alguns pedidos incluem mais de uma doença.
 
 ### Doenças
-![](graficos/doencas.png)
+![Principais doenças relacionadas aos pedidos de tratamento](graficos/doencas.png){#fig-doencas}
+
+Utilizando ferramentas de leitura automatizada, a pesquisa conseguiu extrair o código internacional de doenças - CID de 18.534 petições iniciais, sendo que alguns pedidos incluem mais de uma doença. O propósito foi entender o perfil das demandas levadas ao Poder Judiciário e verificar se há concentração em determinadas doenças ou grupos de doenças.
+
+Os transtornos globais do desenvolvimento (nome técnico que abarca autismo) aparece em primeiro lugar com larga vantagem, respondendo por 14,3% dos pedidos analisados. Em segundo lugar aparece transtornos relacionados ao uso de drogas (5,4%), em terceiro obesidade (4,19%) e em quarto transtornos ligados ao alcoolismo (3,1%).
+
+Quando analisadas por grupos, a concentração de mostra ainda mais acentuada. Os transtornos mentais e comportamentais respondem por 37,6% das demandas. O segundo lugar, neoplasias (tumores), aparece com 12%; e o terceiro, doenças endócrinas e metabólicas, com 9,2%.
+
+O @fig-grupos_doencas é interessante por duas razões principais.
+
+O @fig-grupos_doencas mostra como a população em geral está sendo afetada de diversas formas por transtornos psicossociais relacionados ao uso de drogas, álcool e outros distúrbios comportamentais, que podem ter sido agravados pela pandemia. Associamos doenças a bactérias e viroses invasivas, porém os principais distúrbios da modernidade são psicossociais.
+O  @fig-grupos_doencas mostra não os grupos, mas as principais doenças relacionadas aos pedidos de tratamento perante o TJSP.
 
 ### Grupos de doenças
 
-![](graficos/grupos_doencas.png)
-
-Utilizando ferramentas de leitura automatizadas, a pesquisa conseguiu extrair o codigo internacional de doenças - CID de XXX petições iniciais. O propósito foi entender império das demandas levadas ao Poder Judiciário e verificar se há concentração em determinadas doenças ou grupos de doenças.
-
-Os transtornos globais do desenvolvimento (nome técnico que abarca autismo) aparece em primeiro lugar com larga vantagem, respondendo por YYY% dos pedidos analisados. Em segundo lugar aparece transtornos relacionados ao uso de drogas (XX%), em terceiro obesidade (XX%) e em quarto transtornos ligados ao alcoolismo (XX%).
-
-Quando analisadas por grupos, a concentração de mostra ainda mais acentuada. Os transtornos mentais e comportamentais respondem por XX% das demandas. O segundo lugar, neoplasias (tumores), aparece com XX%; e o terceiro, doenças endócrinas e metabólicas, com XX%.
-
-A lista é interessante por duas principais razões. 
-
-A lista mostra como a população em geral está sendo afetada de diversas formas por transtornos psicossociais relacionados ao uso de drogas, álcool e outros distúrbios comportamentais, que podem ter sido agravados pela pandemia. Associamos doenças a bactérias e viruses invasivos, porém os principais distúrbios da modernidade são psicossociais.
-
-A lista indica também o acerto da inclusão pela ANS, através da Resolução Normativa nº 539, de 23 de junho de 2022 da “cobertura obrigatória de sessões para o tratamento de portadores de transtorno do espectro autista”. Parte substancial da endemia de demand
-as perante o Poder Judiciário está associada a essa questão é a inclusão desses transtornos no rol permite uma cobertura mais eficaz e abrangente do sistema de seguridade da saúde.
-
-## Pedidos de liminares
-
-![](graficos/liminar.png)
+![Principais grupos de doneças relacionados os pedidos de tratamento](graficos/grupos_doencas.png){#fig-grupos_doencas}
 
 
-## Análise de duração do processo
 
-A análise de duração do processo considerou apenas as decisões em que constava, na movimentação, a descrição de decisão liminar ou de antecipação de tutela. Muitos pedidos, especialmente aqueles realizados nos juizados especiais cíveis, não incluem o pedido de liminar.
-A duração do processo foi condicionada ao teor da decisão e ao assunto. É possível notar que pedidos não concedidos demoram mais para serem apreciados. Isso ocorre porque, provavelmente, a não concessão leva a uma dilação probatória e os pedidos que levam à concessão estão melhor instruídos.
-O gráfico abaixo mostra o tempo entre a judicialização e a apreciação liminar condicionado à decisão
+Nota-se que os distúrbios comportamentais agrupados no @fig-doencas são relacionados a transtornos globais do desenvolvimento (autismo), uso de drogas ilícitas, obesidade e alcoolismo. 
 
-![](graficos/km_decisao.png)
+O @fig-doencas indica também o acerto da inclusão pela ANS, através da Resolução Normativa nº 539, de 23 de junho de 2022 da “cobertura obrigatória de sessões para o tratamento de portadores de transtorno do espectro autista”. Parte substancial da endemia de demanda perante o Poder Judiciário está associada a essa questão é a inclusão desses transtornos no rol permite uma cobertura mais eficaz e abrangente do sistema de seguridade da saúde.

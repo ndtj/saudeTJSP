@@ -1,0 +1,135 @@
+---
+title: "resultados_word"
+format: docx
+editor: visual
+execute: 
+  echo: False
+---
+
+# Resultados
+
+## Principais assuntos
+
+O gráfico abaixo mostra os quantitativos dos principais assuntos.
+
+![](graficos/assuntos.png){width="1000"}
+
+## Polo passivo
+
+O gráfico abaixo mostra as principais operadoras presentes no polo passivo. Houve junção de alguns nomes. Por exemplo, todas as unimeds foram classicadas como "Unimed". O mesmo ocorreu com o Bradesco, Itaú e outras. Por vezes, houve variações nos nomes. O número do CNPJ também foi utilizado para unificar as categorias. As operadoras com menos de 65 ações contra elas foram mantidas na categoria outros. Havia um número grande de operadoras com o número de ações judiciais entre 50 e 65 e sua inclusão inviabilizaria a visualização apropriada.
+
+```{r}
+library(tidyverse)
+pa <- readRDS("tabelas/polo_passivo.rds")
+pa |>
+  count(parte1, sort = T) |>
+  filter(n > 500) |>
+  ggplot(aes(x = n, y = reorder(parte1,n))) +
+  geom_bar(stat = "identity",fill = "darkblue", show.legend = FALSE) +
+  geom_label(aes(label = n))+
+  scale_fill_viridis_d(option="A") +
+  labs(x = "Quantidade de ações",
+       y = "Operadora",
+       title = "Principais operadoras de plano de saúde no polo passivo no TJSP") +
+  theme_bw()
+
+```
+
+### Tabela 1: Principais operadoras de saúde acionadas no TJSP
+
+```{r}
+library(flextable)
+library(knitr)
+pa |>
+count(parte1, sort = T) |>
+setNames(c("parte", "freq"))|>
+flextable()
+```
+
+### Tabela 2: Taxa de demandas por 1000 beneficiários
+
+```{r}
+op_be <- readRDS("tabelas/operadoras_beneficiarios.rds")
+
+op_be |>
+arrange(desc(demandas_por_mil)) |>
+setNames(c("Operadora", "Demandas", "Beneficiarios", "Demandas por mil beneficiários","Percentual demandas","Percentual beneficiários")) |>
+flextable()
+
+```
+
+### Gráfico : Taxa de demanda por 10 mil beneficiários
+
+![](graficos/op_be.png)
+
+A tabela que elenca as operadoras de saúde por quantidade de demandas em números absolutos deve ser analisada com cautela. A quantidade de demandas está associada à quantidade de beneficiários, de forma que operadoras de grande porte aparecerão nas primeiras posições independentemente da qualidade do serviço prestado. Por tal razão, não surpreende a constatação de que Unimed, Sulamerica, Amil e Bradesco ocupem as quatro primeiras posições.
+
+Daí a necessidade de se ponderar a quantidade de demandas pela quantidade de benefíciarios, realizando o cálculo de uma taxa de demandas por 10 mil beneficiários. Na tabela com a taxa percebe-se que diversas operadoras que se encontravam nas primeiras posições caem para níveis inferiores e novas operadoras surgem na liderança pela quantidade de demandas ponderada pelo número de vidas seguradas.
+
+A Cassi - Caixa de Assistência dos Funcionários do Banco do Brasil, aparece destacada em primeiro lugar, com quase 2 demandas para cada 10 vidas. As Caixas Beneficentes aparecem em segundo lugar com 4,84 demandas por 10 mil beneficiários, seguida por Allianz, com 2.83, e Trasmintano, com 2.55. Há depois um grupo grande de operadoras com taxas entre 1 e 2 demandas por 10 mil beneficiários. E, por fim, um seleto grupo de seis operadoras com menos de uma demanda. Hapvida aparece com a taxa mais baixa: 0,063. \## Evolução das demandas no tempo
+
+O gráfico abaixo mostra a frequência mensal de demandas judiciais contra operadoras de planos de saúde ao longo dos anos. A linha tracejada representa a média móvel de seis meses.
+
+Os dois eventos de interesse com potencial impacto são o julgamento do STJ e a vigência da lei 14.454. O julgamento do STJ restringe o acesso a tratamentos, sendo uma potencial causa de redução no volume de ações. A vigência da lei 14.454 amplia o acesso subtratamento, sendo uma potencial causa de aumento no volume de ações.
+
+A restrição na quantidade de tratamentos por decisão de uma corte superior aumenta as chances de improcedência das ações. Já a ampliação na quantidade de tratamentos por força de uma nova lei incrementa as chances de procedência das ações.
+
+Com a notícia do início do julgamento, é esperado que os potenciais autores de medidas judiciais aguardem a sua conclusão para decidir se irão ou não recorrer ao Poder Judiciário. A propositura antecipada pode expor os autores a custos desnecessários. Por essa razão, a queda no volume de ações tende a ser antecipada e pode ser observada antes mesmo da proclamação do resultado do julgamento.
+
+Já a discussão do projeto de lei não garante a aprovação, de forma que os potenciais autores de medidas judiciais aguardarão a sua conclusão para decidir se irão ou não recorrer ao Poder Judiciário. Uma vez promulgalda a lei, os autores e seus advogados precisarão estudar os casos, reunir documentos e preparar a inicial antes de distribuir a ação. Com isso, o aumento no volume de ações tende a ser postergado e pode ser observada de 30 a 60 dias após a vigência.
+
+![](graficos/tb_mes.png)
+
+O sistema de saúde sofreu entre 2019 e 2023 sucessivas intervenções de diversas naturezas, todas com potencial de elevado impacto nos litígios. A primeira intervenção foi de natureza sanitária, a pandemia. A segunda intervenção foi de natureza judiciária, a decisão do STJ. A terceira intervenção foi de natureza legislativa, a promulgação da lei XXX.
+
+Essa sucessão de intervenções em um período tão curto dificulta inferências sobre as possíveis causas nas variações drásticas observadas na quantidade de casos no período analisado. Por essa razão, restringiremos nossos comentários a aspectos meramente descritivos no momento, a fim de aguardar pelo menos até o final de 2023 para realizar novas análises.
+
+A maior variação na quantidade de ações é observada nos casos envolvendo tratamentos. A quantidade de pedidos relacionados a medicamentos apresenta maior estabilidade. Isso se deve a \[....\].
+
+As ações relacionadas a pedidos de medicamento são inferiores em relação aos de tratamento e oscilam em torno de 125 por mês. Em janeiro de 2019 houve XX pedidos. Essa quantidade aumenta até atingir o ápice de ZZ pedidos em dezembro de 2020. Ao longo de 2022 parece ocorrer uma queda, chegando a XX em dezembro daquele ano. Já em 2023 as quantidades voltam a subir chegando a XXX em maio.
+
+As ações relacionadas a pedidos de tratamento apresentam um comportamento distinto. Em janeiro de 2019 foram XXX ações. Esse número aumenta até chegar a XXX em março de 2021. A quantidade mais elevado foi de XXX ações distribuídas em fevereiro de 2022, seguida de uma queda até XXX em janeiro de 2023, quando a quantidade volta a crescer até XX em maio de 2023.
+
+A variação nas quantidades observadas podem estar associadas às intervenções mencionadas acima. O início da pandemia em março de 2020 parece associado a uma estabilização na quantidade de pedidos. Essa estabilidade parece se romper em março de 2022, quando a quantidade de pedidos começa a cair. A queda pode estar associada à proclamação parcial de julgamento pela taxatividade do rol da ANS pelo STJ, o que desincebtivaria a propositura de ações fora do rol.
+
+Por outro lado, tanto os pedidos de tratamento como de medicamentos aumentam a partir de janeiro de 2023. A lei 14.454 que torna o rol exemplificativo foi promulgada em setembro de 2021. No entanto, é esperado um intervalo entre 60 e 90 dias até que a lei surta efeitos na quantidade de ações, considerando o tempo necessário para que os pacientes procurem seus advogados e estes consigam organizar os documentos e preparar a ação para distribuição.
+
+Então, existe a possibilidade de o aumento na quantidade de ações observado ao longo de 2023 estar associado à nova lei. No entanto, duas ressalvas devem ser feitas. Primeiro, as quantidades observadas em 2023 (após a lei) ainda são muito inferiores àquelas observadas até 2021. Segundo, o pouco tempo transcorrido entre a promulgação da lei e a realização desta análise não permite chegar a uma conclusão robusta sobre a questão.
+
+## Pedidos de tratamento conforme a doença
+
+Para identificar as doenças objetos dos pedidos de tratamento, foi necessário baixar as petições iniciais, nos procedimentos comuns ordinários e os ajuizamentos, nos procedimentos dos juizados especiais cíveis. Foi possívei indentificar as doenças conforme o CID em 19.474 processos. Vale dizer que, alguns pedidos incluem mais de uma doença.
+
+### Doenças
+
+![](graficos/doencas.png)
+
+### Autismo
+
+![](graficos/autismo.png)
+
+### Grupos de doenças
+
+![](graficos/grupos_doencas.png)
+
+Utilizando ferramentas de leitura automatizadas, a pesquisa conseguiu extrair o codigo internacional de doenças - CID de XXX petições iniciais. O propósito foi entender império das demandas levadas ao Poder Judiciário e verificar se há concentração em determinadas doenças ou grupos de doenças.
+
+Os transtornos globais do desenvolvimento (nome técnico que abarca autismo) aparece em primeiro lugar com larga vantagem, respondendo por YYY% dos pedidos analisados. Em segundo lugar aparece transtornos relacionados ao uso de drogas (XX%), em terceiro obesidade (XX%) e em quarto transtornos ligados ao alcoolismo (XX%).
+
+Quando analisadas por grupos, a concentração de mostra ainda mais acentuada. Os transtornos mentais e comportamentais respondem por XX% das demandas. O segundo lugar, neoplasias (tumores), aparece com XX%; e o terceiro, doenças endócrinas e metabólicas, com XX%.
+
+A lista é interessante por duas principais razões.
+
+A lista mostra como a população em geral está sendo afetada de diversas formas por transtornos psicossociais relacionados ao uso de drogas, álcool e outros distúrbios comportamentais, que podem ter sido agravados pela pandemia. Associamos doenças a bactérias e viruses invasivos, porém os principais distúrbios da modernidade são psicossociais.
+
+A lista indica também o acerto da inclusão pela ANS, através da Resolução Normativa nº 539, de 23 de junho de 2022 da "cobertura obrigatória de sessões para o tratamento de portadores de transtorno do espectro autista". Parte substancial da endemia de demand as perante o Poder Judiciário está associada a essa questão é a inclusão desses transtornos no rol permite uma cobertura mais eficaz e abrangente do sistema de seguridade da saúde.
+
+## Pedidos de liminares
+
+![](graficos/liminar.png)
+
+## Análise de duração do processo
+
+A análise de duração do processo considerou apenas as decisões em que constava, na movimentação, a descrição de decisão liminar ou de antecipação de tutela. Muitos pedidos, especialmente aqueles realizados nos juizados especiais cíveis, não incluem o pedido de liminar. A duração do processo foi condicionada ao teor da decisão e ao assunto. É possível notar que pedidos não concedidos demoram mais para serem apreciados. Isso ocorre porque, provavelmente, a não concessão leva a uma dilação probatória e os pedidos que levam à concessão estão melhor instruídos. O gráfico abaixo mostra o tempo entre a judicialização e a apreciação liminar condicionado à decisão
+
+![](graficos/km_decisao.png)
